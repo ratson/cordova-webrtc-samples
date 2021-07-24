@@ -211,6 +211,23 @@
 </div>
 
 <script src="cordova.js"></script>
-
+<script>
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+  const permissions = cordova.plugins.permissions;
+  permissions.requestPermissions([
+    permissions.CAMERA,
+    permissions.RECORD_AUDIO,
+  ], () => {
+    if ( status.hasPermission ) {
+      console.log("Yes :D ");
+    } else {
+      console.warn("No :( ");
+    }
+  }, () => {
+    console.warn("Error");
+  });
+}
+</script>
 </body>
 </html>
